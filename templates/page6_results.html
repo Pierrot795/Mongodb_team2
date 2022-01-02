@@ -1,0 +1,6 @@
+<ul>
+    <h2>Top 10 institutions that received most amount between {{date1}} and {{date2}}</h2>
+    {% for thing in results %}
+      <li><p>{{ thing._id }} received {{thing.sumAmount}}$</p></li>
+    {% endfor %}  
+    </ul>

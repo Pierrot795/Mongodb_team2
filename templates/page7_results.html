@@ -1,0 +1,9 @@
+<ul>
+    <h2>list of awards by organization of the NSF</h2>
+    {% for thing1 in results %}
+      <h3><p> organisation id: {{thing1._id}}, average amount by award: {{thing1.averageAmount}}$</p></h3>
+
+      <li>{{thing1.awards}}</li>
+
+    {% endfor %}  
+    </ul>

@@ -1,0 +1,6 @@
+<ul>
+    <h2>list of institutions</h2>
+    {% for thing in results %}
+      <li><p>{{ thing._id }} received an average amount of {{thing.averageAmount}}$ by {{thing.count}} organisations</p></li>
+    {% endfor %}  
+    </ul>

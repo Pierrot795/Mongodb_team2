@@ -7,16 +7,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
-    <title>page1</title>
+    <title>page4</title>
 </head>
 <body>
-   <h1>List of investigators for an award</h1>
+   <h1>List of awards for an investigator</h1>
    <div class="container">
 
-    <form action="{{ url_for('page1')}}" method = "POST">
-        <p>name of your institution <input type = "text" name = "institution_name" />
-        <p>id of the award <input type = "text" name = "award_id" />
-        <p>title of the award<input type = "text" name = "award_title" />
+    <form action="{{ url_for('page4')}}" method = "POST">
+        <p>First name of the investigator <input type = "text" name = "first_name" />
+        <p>Last name of the investigator <input type = "text" name = "last_name" />
+        <p>Email ID of the investigator <input type = "text" name = "email_id" />
         <p><input type = "submit" value = "submit" /></p>
     </form>
 

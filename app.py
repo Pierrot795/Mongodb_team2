@@ -40,8 +40,64 @@ def page1():
 @app.route('/page2',methods=['GET','POST'])
 def page2():
     if request.method == "POST":
-        name = request.form.get("name")
+        name = request.form.get("institution_name")
         query = dbmongo.query2(name,db)
         results = query[0]['awards']
+        print(results)
         return render_template('page2_results.html',results=results)
     return render_template('page2.html')
+
+@app.route('/page4',methods=['GET','POST'])
+def page4():
+    if request.method == "POST":
+        first_name = request.form.get("first_name")
+        last_name = request.form.get("last_name")
+        email_id = request.form.get("email_id")
+        query = dbmongo.query4(first_name,last_name,email_id,db)
+        results = query
+        print(results)
+        return render_template('page4_results.html',results=results)
+    return render_template('page4.html')
+
+@app.route('/page3',methods=['GET','POST'])
+def page3():
+    if request.method == "POST":
+        name = request.form.get("scientific domain")
+        query = dbmongo.query3(name,db)
+        results = query[0]['w_award']
+        return render_template('page3_results.html',results=results)
+    return render_template('page3.html')
+
+@app.route('/page5',methods=['GET','POST'])
+def page5():
+    query = dbmongo.query5(db)
+    results = query
+    return render_template('page5.html',results=results)
+
+
+@app.route('/page7',methods=['GET','POST'])
+def page7():
+    if request.method == "POST":
+        date1 = request.form.get("date1")
+        date2 = request.form.get("date2")
+        query = dbmongo.query7(date1,date2,db)
+        results = query
+        results2 = query[0]['awards']
+        return render_template('page7_results.html',results=results,results2=results2)
+    return render_template('page7.html')
+
+@app.route('/page6',methods=['GET','POST'])
+def page6():
+    if request.method == "POST":
+        date1 = request.form.get("date1")
+        date2 = request.form.get("date2")
+        query = dbmongo.query6(date1,date2,db)
+        results = query
+        return render_template('page6_results.html',results=results,date1=date1,date2=date2)
+    return render_template('page6.html')
+
+@app.route('/page8',methods=['GET','POST'])
+def page8():
+    query = dbmongo.query8(db)
+    results = query
+    return render_template('page8.html',results=results)

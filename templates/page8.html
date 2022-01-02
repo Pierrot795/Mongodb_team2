@@ -1,0 +1,6 @@
+<ul>
+    <h2>list of investigators on the last 1000 awards</h2>
+    {% for thing in results %}
+      <li><p>{{ thing._id[1] }} {{ thing._id[2] }} having for email: {{ thing._id[0] }} delivered a max amount of {{thing.maxAmount}}$.</p></li>
+    {% endfor %}  
+    </ul>
