@@ -10,3 +10,8 @@ Etapes pour lancer l'app en local:
 
 Pour avoir le temps d'execution des queries: aller dans le dossier principal et dans un shell:
 -> pathToPython.exe queries_execution_time.py
+
+Si problème avec l'environnement virtuel: installer les packages suivants:
+- flask
+- pymongo
+- python-dotenv
