@@ -1,6 +1,10 @@
 import pymongo
 from pymongo import MongoClient
 from bson.json_util import ObjectId,loads,dumps
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 def db_import():
     client = MongoClient('localhost', 27017) #remplacer par les id du mongos
