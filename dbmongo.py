@@ -3,6 +3,7 @@ from pymongo import MongoClient
 from bson.json_util import ObjectId,loads,dumps
 from dotenv import load_dotenv
 import os
+from datetime import datetime
 
 load_dotenv()
 
@@ -10,6 +11,15 @@ def db_import():
     client = MongoClient('localhost', 27017) #remplacer par les id du mongos
     db = client.Test_grants
     return db
+
+def timemeasure(collection,pipeline):
+    time1=datetime.now()
+    for i in range(10):
+       collection.aggregate(pipeline)
+       time2=datetime.now()
+    res = (time2-time1)/10
+    print(str(res))
+    print()
 
 def query1(name,award_title,award_id,db):
     pipeline = [
@@ -108,11 +118,10 @@ def query5(db):
             }
         }
     ]
-
     return loads(dumps(db.main_collection.aggregate(pipeline)))
 
 def query7(date1,date2,db):
-    return loads(dumps(db.organisation_awards.aggregate([
+    pipeline = [
         {
             "$unwind": {
             "path": '$w_award'
@@ -145,10 +154,11 @@ def query7(date1,date2,db):
                 
             }
         }
-    ])))
+    ]
+    return loads(dumps(db.organisation_awards.aggregate(pipeline)))
 
 def query6(date1,date2,db):
-    return loads(dumps(db.main_collection.aggregate([
+    pipeline = [
         {
             "$unwind": {
                 
@@ -159,8 +169,8 @@ def query6(date1,date2,db):
 
         {
             "$match": {
-               'awards.award_effective_date':{"$gte":'01/01/2000'},
-               'awards.award_expiration_date':{"$lte":'01/01/2010'}
+               'awards.award_effective_date':{"$gte":date1},
+               'awards.award_expiration_date':{"$lte":date2}
                 
             }
         },
@@ -184,11 +194,13 @@ def query6(date1,date2,db):
         {
             "$limit": 10
         },
-    ])))
+    ]
+
+    return loads(dumps(db.main_collection.aggregate(pipeline)))
 
 
 def query8(db):
-    return loads(dumps(db.award_investigators.aggregate([
+    pipeline = [
 		{"$sort":{'award_effective_date':-1}}, 
 
 
@@ -226,4 +238,5 @@ def query8(db):
 			    
 			}
 		}
-	])))
+	]
+    return loads(dumps(db.award_investigators.aggregate()))
