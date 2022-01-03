@@ -1,6 +1,14 @@
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+</head>
+
+
+<body>
 <ul>
     <h2>list of investigators on the last 1000 awards</h2>
     {% for thing in results %}
-      <li><p>{{ thing._id[1] }} {{ thing._id[2] }} having for email: {{ thing._id[0] }} delivered a max amount of {{thing.maxAmount}}$.</p></li>
+      <li><p>{{ thing._id[1] }} {{ thing._id[2] }} having for email: {{ thing._id[0] }} participated to the validation of an award of a maximum amount of {{thing.maxAmount}}$.</p></li>
     {% endfor %}  
     </ul>
+    <p class='center'><a href=/ ><button class=grey style="height:75px;width:150px">Return home</button></a></p>
+  </body>

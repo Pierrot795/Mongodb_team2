@@ -1,6 +1,13 @@
-<ul>-
-  <h2>list of awards</h2>
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+</head>
+
+<body>
+<ul>
+  <h2>list of {{name}} awards</h2>
     {% for thing in results %}
       <li><p>{{ thing.award_title}}  expiring the {{thing.award_expiration_date}}</p></li>
     {% endfor %}  
     </ul>
+    <p class='center'><a href=/ ><button class=grey style="height:75px;width:150px">Return home</button></a></p>
+  </body>

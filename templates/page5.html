@@ -1,6 +1,14 @@
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+</head>
+
+<body>
 <ul>
-    <h2>list of institutions</h2>
+    <h2>list of institutions having received awards from more than 8 NSF organisations</h2>
     {% for thing in results %}
-      <li><p>{{ thing._id }} received an average amount of {{thing.averageAmount}}$ by {{thing.count}} organisations</p></li>
+      <li><p>{{ thing._id }} received an average amount of <strong>{{thing.averageAmount}}</strong>$ by {{thing.count}} organisations</p></li>
     {% endfor %}  
     </ul>
+    <p class='center'><a href=/ ><button class=grey style="height:75px;width:150px">Return home</button></a></p>
+
+  </body>

@@ -1,9 +1,18 @@
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+</head>
+
+
+<body>
 <ul>
-    <h2>list of awards by organization of the NSF</h2>
+    <h2>List of awards by organization of the NSF granted between {{date1}} and {{date2}}</h2>
     {% for thing1 in results %}
-      <h3><p> organisation id: {{thing1._id}}, average amount by award: {{thing1.averageAmount}}$</p></h3>
+      <h3><p>Organisation id: {{thing1._id}}, average amount by award: {{thing1.averageAmount}}$</p></h3>
 
-      <li>{{thing1.awards}}</li>
-
+    {% for a in thing1.awards %}
+      <li>{{a.award_title}} awarded for {{a.award_amount}}$.</li>
+      {% endfor %}  
     {% endfor %}  
     </ul>
+    <p class='center'><a href=/ ><button class=grey style="height:75px;width:150px">Return home</button></a></p>
+  </body>

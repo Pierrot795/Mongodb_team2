@@ -1,6 +1,13 @@
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+</head>
+
+<body>
 <ul>
-    <h2>list of awards for this user</h2>
+    <h2>list of awards for the investigator {{first_name}} {{last_name}}</h2>
     {% for thing in results %}
       <li><p>{{ thing.award_title }}</p></li>
     {% endfor %}  
     </ul>
+    <p class='center'><a href=/ ><button class=grey style="height:75px;width:150px">Return home</button></a></p>
+  </body>
