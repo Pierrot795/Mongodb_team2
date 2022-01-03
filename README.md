@@ -1,9 +1,9 @@
 # Mongodb_team2
 
-Lire le fichier commandes.txt pour lancer un environnement virtuel
+Etapes pour lancer l'app en local:
 
-Les pages sont appelées depuis app.py
+1) activer l'environnement virtuel (accès aux bon packages etc...)
+-> sur pc:  dans le dossier principal : source Scripts/activate
 
-Les HTML sont dans le dossier 'template' et le css dans 'static'
-
-Le fichier dbmongo.py permet de créer la connection à mongodb, et de définir les queries.
+2) lancer l'app (port 5000 par défaut):
+-> flask run
