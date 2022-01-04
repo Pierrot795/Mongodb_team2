@@ -4,7 +4,7 @@
 
 
 <body><ul>
-  <h2>list the awards granted to: {{name}}</h2>
+  <h2>list of the awards granted to: {{name}}</h2>
     {% for thing in results %}
       <li><p>{{ thing.award_title }}: {{ thing.award_amount }}$ granted between {{thing.award_effective_date}} and {{thing.award_expiration_date}} by NSF {{thing.organisation[0].division}}</p></li>
 

@@ -4,18 +4,8 @@ import pprint
 import json
 from bson.json_util import ObjectId,loads,dumps
 from sshtunnel import SSHTunnelForwarder
-from ssh_pymongo import MongoSession
-
-
-class MyEncoder(json.JSONEncoder):
-
-    def default(self, obj):
-        if isinstance(obj, ObjectId):
-            return str(obj)
-        return super(MyEncoder, self).default(obj)
 
 app = Flask(__name__)
-app.json_encoder = MyEncoder
 
 db = dbmongo.db_import()
 

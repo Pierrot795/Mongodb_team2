@@ -5,13 +5,13 @@ from dotenv import load_dotenv
 import os
 from datetime import datetime
 from sshtunnel import SSHTunnelForwarder
-from ssh_pymongo import MongoSession
 
-load_dotenv()
+
 
 
 
 def db_import():
+    
     server = SSHTunnelForwarder(
     "mongodb009.westeurope.cloudapp.azure.com",
     ssh_username="administrateur",
@@ -32,6 +32,7 @@ def timemeasure(collection,pipeline):
     print(str(res))
     print()
 
+#main_collection
 def query1(name,award_title,award_id,db):
     pipeline = [
 		{
@@ -61,6 +62,7 @@ def query1(name,award_title,award_id,db):
 
     return loads(dumps(db.main_collection.aggregate(pipeline)))
 
+#main_collection
 def query2(name,db):
     return loads(dumps(db.main_collection.find(  { 
         "name" : name
@@ -74,6 +76,7 @@ def query2(name,db):
     })))
 
 
+#award_investigators
 def query4(first_name,last_name,email_id,db):
     return loads(dumps(db.award_investigators.find({ 
         "investigators.first_name" : first_name, 
@@ -84,6 +87,8 @@ def query4(first_name,last_name,email_id,db):
         "award_title" : 1.0
     })))
 
+
+#foa_info_awards
 def query3(name,db):
     return loads(dumps(db.foa_info_awards.find(    { 
         "name" : name
@@ -93,6 +98,7 @@ def query3(name,db):
         "w_award.award_expiration_date" : 1.0
     })))
 
+#main_collection
 def query5(db):
     pipeline = [
         {
@@ -131,6 +137,7 @@ def query5(db):
     ]
     return loads(dumps(db.main_collection.aggregate(pipeline)))
 
+#organisation_awards
 def query7(date1,date2,db):
     pipeline = [
         {
@@ -168,6 +175,7 @@ def query7(date1,date2,db):
     ]
     return loads(dumps(db.organisation_awards.aggregate(pipeline)))
 
+#main_collection
 def query6(date1,date2,db):
     pipeline = [
         {
@@ -210,6 +218,7 @@ def query6(date1,date2,db):
     return loads(dumps(db.main_collection.aggregate(pipeline)))
 
 
+#award_investigators
 def query8(db):
     pipeline = [
 		{"$sort":{'award_effective_date':-1}}, 
@@ -250,4 +259,4 @@ def query8(db):
 			}
 		}
 	]
-    return loads(dumps(db.award_investigators.aggregate()))
+    return loads(dumps(db.award_investigators.aggregate(pipeline)))
