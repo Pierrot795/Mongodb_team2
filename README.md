@@ -16,5 +16,8 @@ installer les packages suivants:
 - flask
 - pymongo
 - python-dotenv
+- sshtunnel
+
+
 et configurer le point d'entrée de l'app:
 export FLASK_APP=app.py
