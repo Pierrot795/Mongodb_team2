@@ -3,6 +3,8 @@ import dbmongo
 import pprint
 import json
 from bson.json_util import ObjectId,loads,dumps
+from sshtunnel import SSHTunnelForwarder
+from ssh_pymongo import MongoSession
 
 
 class MyEncoder(json.JSONEncoder):
@@ -14,6 +16,7 @@ class MyEncoder(json.JSONEncoder):
 
 app = Flask(__name__)
 app.json_encoder = MyEncoder
+
 db = dbmongo.db_import()
 
 @app.route('/')
@@ -29,10 +32,6 @@ def page1():
         award_title = request.form.get("award_title")
         query = dbmongo.query1(name,award_title,award_id,db)
         results = query[0]['awards']['investigators']
-        #email = results[0]['awards']['investigators'][0]['email_id']
-        #first_name = results[0]['awards']['investigators'][0]['first_name']
-        #last_name = results[0]['awards']['investigators'][0]['last_name']
-        #return "The investigator is: "+first_name+' '+last_name+' , and his mail address is: '+email
         return render_template('page1_results.html',results=results,id=award_id,title=award_title)
     return render_template('page1.html')
 

@@ -4,12 +4,23 @@ from bson.json_util import ObjectId,loads,dumps
 from dotenv import load_dotenv
 import os
 from datetime import datetime
+from sshtunnel import SSHTunnelForwarder
+from ssh_pymongo import MongoSession
 
 load_dotenv()
 
+
+
 def db_import():
-    client = MongoClient('localhost', 27017) #remplacer par les id du mongos
-    db = client.Test_grants
+    server = SSHTunnelForwarder(
+    "mongodb009.westeurope.cloudapp.azure.com",
+    ssh_username="administrateur",
+    ssh_password="Mongodb13377",
+    remote_bind_address=('mongodb009', 30000)
+)
+    server.start()
+    client = MongoClient('127.0.0.1', server.local_bind_port) 
+    db = client.grants
     return db
 
 def timemeasure(collection,pipeline):
