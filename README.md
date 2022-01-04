@@ -15,9 +15,8 @@ Si problème avec l'environnement virtuel:
 installer les packages suivants:
 - flask
 - pymongo
-- python-dotenv
 - sshtunnel
 
 
-et configurer le point d'entrée de l'app:
+et configurer le point d'entrée de l'app si besoin:
 export FLASK_APP=app.py
